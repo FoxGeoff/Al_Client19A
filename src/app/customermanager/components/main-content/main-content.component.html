@@ -1,0 +1,53 @@
+<div *ngIf='!customer'>
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf='customer'>
+  <mat-card>
+    <mat-card-title>
+      <mat-icon>people</mat-icon>
+      {{customer.username}}
+      <mat-card-subtitle>
+        <P>(Id: {{customer.id}}) Address: {{customer.address}}, City: {{customer.city}}, </P>
+      </mat-card-subtitle>
+    </mat-card-title>
+    <mat-card-content>
+
+      <mat-tab-group>
+
+        <mat-tab label="Invoices">
+          <app-invoices [invoices]="customer.invoices"></app-invoices>
+        </mat-tab>
+
+        <mat-tab label="Notes">
+
+          <form class="example-form">
+            <mat-form-field class="example-full-width">
+              <textarea matInput readonly=true cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                cdkAutosizeMinRows="15" cdkAutosizeMaxRows="20"> {{customer.notes}} </textarea>
+            </mat-form-field>
+          </form>
+
+        </mat-tab>
+
+        <mat-tab label="Files">
+
+        </mat-tab>
+
+        <mat-tab label="Products">
+
+        </mat-tab>
+
+        <mat-tab label="Payments">
+
+        </mat-tab>
+
+      </mat-tab-group>
+    </mat-card-content>
+  </mat-card>
+</div>
+<mat-card>
+  <div *ngIf='customer'>
+    <h1>Details</h1>
+    <p> Name: {{customer.firstName || "firstName"}} {{customer.lastName || "lastName"}} </p>
+  </div>
+</mat-card>

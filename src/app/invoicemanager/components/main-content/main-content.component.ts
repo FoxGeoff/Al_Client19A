@@ -34,8 +34,8 @@ export class MainContentComponent implements OnInit {
           this.invoice = this.service.invoiceById(this.id);
           this.invoiceParameterService.detailedInvoice = this.invoice;
           //TODO: here this does not work!
-          this.customer = this.customerService.customerById(this.invoice.associatedCustomerId);
-          if(this.customer == null) console.log("missing");
+          //this.customer = this.customerService.customerById(this.invoice.associatedCustomerId);
+          //if(this.customer == null) console.log("missing");
         }, 500);
       });
     });

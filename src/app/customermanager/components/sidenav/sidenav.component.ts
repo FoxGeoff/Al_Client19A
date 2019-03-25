@@ -36,7 +36,7 @@ export class SidenavComponent implements OnInit {
     console.log('Finished getting all customers from internal store');
 
     this.customerService.getAllCustomers();
-    console.log('Finished getting all customers from the server');
+    console.log('Finished getting all customers from the server into internal store');
 
     this.router.events.subscribe(() => {
       if (this.smallWidthBreakpoint) {

@@ -103,7 +103,7 @@ export class CustomerService {
         (err: any) => console.log(err)
       );
     // retrieve from database and add to internal store
-    this.getCustomerById(customer.id)
+    this.getCustomerByIdDb(customer.id)
       .subscribe(
         (data: Customer) => {
           console.log(`${data.username} retrieved from database successfully`);
@@ -115,9 +115,25 @@ export class CustomerService {
         (err) => console.log(err)
       );
   }
+////
+  getCustomerById(id: number): void {
+    this.getCustomerByIdDb(id).subscribe(
+      (data: Customer) => {
+        console.log(data);
+        // push onto internal data store
+        this.dataStore.customers.push(data);
+        // Copy data obj to isolate the data from manipulation
+        // and expose this data
+        this._customers.next(Object.assign({}, this.dataStore).customers);
+      },
+      (err: CustomerTrackerError) => console.log(err.friendlyMessage),
+      () => console.log('Finished getting customer data from server:: getCustomerById()')
+    );
+    this._customers.next(Object.assign({}, this.dataStore).customers);
+  }
 
-  //move to: data service
-  getCustomerById(id: number): Observable<Customer> {
+  //move to: data service [GET]
+  getCustomerByIdDb(id: number): Observable<Customer> {
     const userUrl = `https://localhost:44334/api/customers/${id}`;
 
     console.log('Getting customer from the server id: ' + id);
@@ -129,7 +145,7 @@ export class CustomerService {
     });
   }
 
-  //move to: data service
+  //move to: data service [PUT]
   updateCustomerDb(updatedCustomer: Customer): Observable<void> {
     const userUrl = `https://localhost:44334/api/customers/${updatedCustomer.id}`;
 

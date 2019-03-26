@@ -11,7 +11,7 @@
 
 <div *ngIf='invoice'>
   <mat-card>
-    <h1>Invoice for customer X</h1>
+      <div *ngIf='customer'> <h1>Invoice for customer {{customer.username}}</h1> </div>
       <p> Description: {{invoice.invoiceDescription}} </p>
   </mat-card>
 </div>

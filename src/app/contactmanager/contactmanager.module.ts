@@ -38,7 +38,7 @@ const routes: Routes = [
     ReactiveFormsModule,
   ],
   providers: [
-    UserService,
+    //UserService,
   ],
   declarations: [
     ContactmanagerAppComponent,

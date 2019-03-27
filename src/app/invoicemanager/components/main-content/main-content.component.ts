@@ -42,7 +42,7 @@ export class MainContentComponent implements OnInit {
           //from local store
           this.customer = this.customerService.customerById(this.custId);
           if (this.customer == null) console.log("Customer missing");
-
+          //TODO: Fix missing customer data
           //if local store empty then load all customers
           if (this.customer == null) {
             this.customerService.getAllCustomers();

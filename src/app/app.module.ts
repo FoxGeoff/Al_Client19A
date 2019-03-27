@@ -35,7 +35,7 @@ const routes: Routes = [
     HttpClientModule,
     MaterialModule,
     FlexLayoutModule,
-    CoreModule,
+    CoreModule, //Only import here in the root: 'app.module'
   ],
   providers: [],
   bootstrap: [AppComponent]

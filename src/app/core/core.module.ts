@@ -19,8 +19,9 @@ import { PlainLoggerService } from './plain-logger.service';
 })
 export class CoreModule {
 
+  //To guard against a lazy-loaded module re-importing CoreModule
   constructor(@Optional() @SkipSelf() parentModule: CoreModule) {
-    throwIfAlreadyLoaded(parentModule, 'CoreModule');
+    throwIfAlreadyLoaded(parentModule, 'CoreModule is already loaded. Import it in the AppModule only');
   }
 
 }

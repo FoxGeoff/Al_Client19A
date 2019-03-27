@@ -26,7 +26,6 @@ export class MainContentComponent implements OnInit {
     this.route.params.subscribe(params => {
       this.id = (params['id']) || null;
       this.invoice = null;
-      console.log("invoice:" + this.id);
 
       this.service.invoices.subscribe(invoices => {
         if (invoices.length == 0) { return; }
@@ -34,7 +33,8 @@ export class MainContentComponent implements OnInit {
         setTimeout(() => {
           this.invoice = this.service.invoiceById(this.id);
           this.invoiceParameterService.detailedInvoice = this.invoice;
-          
+          console.log("invoice:" + this.id);
+
           //TODO: not working
           this.custId = this.invoice.associatedCustomerId;
           console.log("Customer:" + this.custId);

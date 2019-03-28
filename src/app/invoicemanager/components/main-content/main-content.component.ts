@@ -32,21 +32,16 @@ export class MainContentComponent implements OnInit {
         if (invoices.length == 0) { return; }
 
         setTimeout(() => {
+          //from local store
           this.invoice = this.service.invoiceById(this.id);
           this.invoiceParameterService.detailedInvoice = this.invoice;
-          console.log("invoice:" + this.id);
 
+          console.log("invoice:" + this.id);
           this.custId = this.invoice.associatedCustomerId;
           console.log("Customer:" + this.custId);
 
           //from local store
           this.customer = this.customerService.customerById(this.custId);
-          if (this.customer == null) console.log("Customer missing");
-          //TODO: Fix missing customer data
-          //if local store empty then load all customers
-          if (this.customer == null) {
-            this.customerService.getAllCustomers();
-          }
 
         }, 500);
       });
